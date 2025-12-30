@@ -1,4 +1,4 @@
-#Tue Dec 30 11:05:18 CST 2025
+#Tue Dec 30 11:17:48 CST 2025
 base.2=/Users/ajbowlds/edpapp/AndroidOmniAssistant/Androidassistant/app/build/intermediates/dex/debug/mergeProjectDexDebug/10/classes.dex
 path.2=10/classes.dex
 base.1=/Users/ajbowlds/edpapp/AndroidOmniAssistant/Androidassistant/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex

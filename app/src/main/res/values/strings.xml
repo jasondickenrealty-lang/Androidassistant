@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">AndroidAssistant</string>
+    <string name="app_name">Omi Real Estate</string>
+    <string name="welcome_message">Find Your Dream Home</string>
+    <string name="browse_properties">Browse Properties</string>
+    <string name="featured_listings">Featured Listings</string>
+    <string name="search_hint">Search by city, zip, or address...</string>
+    <string name="btn_search">Search</string>
+    <string name="btn_view_all">View All</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_properties">Properties</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
+    <string name="property_details">Property Details</string>
+    <string name="contact_agent">Contact Agent</string>
+    <string name="schedule_tour">Schedule Tour</string>
+    <string name="save_property">Save</string>
 </resources>
