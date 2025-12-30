@@ -1,0 +1,61 @@
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle files
+.gradle/
+build/
+**/build/
+
+# Local configuration file
+local.properties
+
+# Android Studio
+*.iml
+.idea/
+*.hprof
+
+# Keystore files
+*.jks
+*.keystore
+
+# Log Files
+*.log
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Captures
+captures/
+
+# IntelliJ
+*.iws
+
+# External tool builders
+.externalNativeBuild/
+.cxx/
+
+# NDK
+obj/
+
+# Kotlin
+*.kotlin_module
