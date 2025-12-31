@@ -1,10 +1,14 @@
 
+
 from fastapi import APIRouter, Request, Query
 from fastapi.responses import JSONResponse
 from datetime import datetime, timezone
 import uuid
 import datetime as dt
+import time
 from app.firebase_client import get_db
+
+_last_write = {}  # uid -> unix timestamp
 
 router = APIRouter()
 
@@ -27,8 +31,29 @@ async def omi_audio(
         except Exception:
             pass
 
+
     print(f"OMI AUDIO: uid={uid} session_id={session_id} sample_rate={sample_rate} ctype={ctype} bytes={len(body)}")
 
+    # Throttled Firestore session update
+    now = time.time()
+    key = uid or "unknown"
+    last = _last_write.get(key, 0)
+    # write at most once every 2 seconds per uid
+    if now - last >= 2:
+        _last_write[key] = now
+        try:
+            db = get_db()
+            db.collection("sessions").document(key).set({
+                "uid": uid,
+                "session_id": session_id,
+                "sample_rate": sample_rate,
+                "last_bytes": len(body),
+                "content_type": ctype,
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+            }, merge=True)
+            print(f"FIRESTORE SESSION UPDATE OK: uid={key} bytes={len(body)}")
+        except Exception as e:
+            print(f"FIRESTORE SESSION UPDATE FAILED: {type(e).__name__}: {e}")
 
     # Firestore write with logging
     try:
