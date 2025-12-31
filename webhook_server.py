@@ -1,6 +1,8 @@
-from fastapi import FastAPI, Request, Query
+from fastapi import FastAPI, APIRouter, Request, Query
 from fastapi.responses import JSONResponse
 import datetime
+
+router = APIRouter()
 
 app = FastAPI()
 
@@ -14,7 +16,7 @@ async def webhook(request: Request):
     # your existing logic here...
     return {"ok": True, "ts": datetime.datetime.utcnow().isoformat()}
 
-@app.post("/omi/audio")
+@router.post("/omi/audio")
 async def omi_audio(
     request: Request,
     session_id: str = Query("default"),
@@ -24,7 +26,6 @@ async def omi_audio(
     body = await request.body()
     ctype = (request.headers.get("content-type") or "").lower()
 
-    # Fix malformed query seen in logs: session_id=default?sample_rate=16000
     if sample_rate is None and "sample_rate=" in session_id:
         try:
             left, right = session_id.split("?", 1)
@@ -35,8 +36,6 @@ async def omi_audio(
             pass
 
     print(f"OMI AUDIO: uid={uid} session_id={session_id} sample_rate={sample_rate} ctype={ctype} bytes={len(body)}")
+    return JSONResponse({"ok": True, "uid": uid, "session_id": session_id, "sample_rate": sample_rate, "bytes": len(body)}, status_code=200)
 
-    return JSONResponse(
-        {"ok": True, "uid": uid, "session_id": session_id, "sample_rate": sample_rate, "bytes": len(body)},
-        status_code=200,
-    )
+app.include_router(router)
