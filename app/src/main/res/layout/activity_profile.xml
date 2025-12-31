@@ -68,6 +68,7 @@
                         android:textSize="40sp" />
 
                     <TextView
+                        android:id="@+id/profileName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -77,6 +78,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/profileEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="john.doe@email.com"

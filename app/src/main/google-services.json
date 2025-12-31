@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "229791231400",
+    "project_id": "android-assistant-8c833",
+    "storage_bucket": "android-assistant-8c833.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229791231400:android:8ad793354417c7856a019d",
+        "android_client_info": {
+          "package_name": "com.edp.android.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwriwu5nX6hlUP27PXi2K_6TZh88BK-ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

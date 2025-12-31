@@ -1,4 +1,4 @@
-package com.example.androidassistant
+package com.edp.android.app
 
 import android.content.Intent
 import android.os.Bundle

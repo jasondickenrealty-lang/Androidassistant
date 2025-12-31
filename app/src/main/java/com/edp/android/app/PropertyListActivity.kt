@@ -1,4 +1,4 @@
-package com.example.androidassistant
+package com.edp.android.app
 
 import android.content.Intent
 import android.os.Bundle
@@ -38,15 +38,7 @@ class PropertyListActivity : AppCompatActivity() {
         }
         
         findViewById<CardView>(R.id.property3).setOnClickListener {
-            propertyClickListener(3, "$675,000", "789 Downtown Blvd, Austin, TX", 4, 3, 2400)
-        }
-        
-        findViewById<CardView>(R.id.property4).setOnClickListener {
-            propertyClickListener(4, "$550,000", "321 Sunset Lane, Austin, TX", 3, 2, 2100)
-        }
-        
-        findViewById<CardView>(R.id.property5).setOnClickListener {
-            propertyClickListener(5, "$1,200,000", "555 Luxury Estates, Austin, TX", 5, 4, 4200)
+            propertyClickListener(3, "$1,800/mo", "789 Pine Dr, Austin, TX", 2, 2, 1100)
         }
     }
 }

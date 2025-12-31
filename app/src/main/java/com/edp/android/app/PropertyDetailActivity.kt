@@ -1,4 +1,4 @@
-package com.example.androidassistant
+package com.edp.android.app
 
 import android.content.Intent
 import android.os.Bundle
@@ -36,16 +36,6 @@ class PropertyDetailActivity : AppCompatActivity() {
         // Save button
         findViewById<TextView>(R.id.btnSave).setOnClickListener {
             Toast.makeText(this, "Property saved to favorites!", Toast.LENGTH_SHORT).show()
-        }
-        
-        // Contact Agent button
-        findViewById<MaterialButton>(R.id.btnContactAgent).setOnClickListener {
-            startActivity(Intent(this, ChatActivity::class.java))
-        }
-        
-        // Schedule Tour button
-        findViewById<MaterialButton>(R.id.btnScheduleTour).setOnClickListener {
-            Toast.makeText(this, "Tour scheduling coming soon!", Toast.LENGTH_SHORT).show()
         }
     }
 }
