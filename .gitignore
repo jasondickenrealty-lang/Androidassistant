@@ -1,3 +1,5 @@
+# Ignore local Firebase credentials
+serviceAccount.json
 # Built application files
 *.apk
 *.ap_
