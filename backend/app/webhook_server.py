@@ -29,17 +29,22 @@ async def omi_audio(
 
     print(f"OMI AUDIO: uid={uid} session_id={session_id} sample_rate={sample_rate} ctype={ctype} bytes={len(body)}")
 
-    # Firestore write
-    db = get_db()
-    chunk_id = str(uuid.uuid4())
-    doc = {
-        "uid": uid,
-        "session_id": session_id,
-        "sample_rate": sample_rate,
-        "bytes": len(body),
-        "content_type": ctype,
-        "received_at": datetime.now(timezone.utc).isoformat(),
-    }
-    db.collection("sessions").document(uid or "unknown").collection("audio_chunks").document(chunk_id).set(doc)
+
+    # Firestore write with logging
+    try:
+        db = get_db()
+        chunk_id = str(uuid.uuid4())
+        doc = {
+            "uid": uid,
+            "session_id": session_id,
+            "sample_rate": sample_rate,
+            "bytes": len(body),
+            "content_type": ctype,
+            "received_at": datetime.now(timezone.utc).isoformat(),
+        }
+        db.collection("sessions").document(uid or "unknown").collection("audio_chunks").document(chunk_id).set(doc)
+        print(f"FIRESTORE AUDIO WRITE OK: uid={uid} chunk_id={chunk_id} bytes={len(body)}")
+    except Exception as e:
+        print(f"FIRESTORE AUDIO WRITE FAILED: {type(e).__name__}: {e}")
 
     return JSONResponse({"ok": True, "uid": uid, "session_id": session_id, "sample_rate": sample_rate, "bytes": len(body)}, status_code=200)
