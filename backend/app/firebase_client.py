@@ -1,5 +1,4 @@
-import os
-import json
+import os, json
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -11,13 +10,11 @@ def get_db():
         return _db
 
     if not firebase_admin._apps:
-        # Option A: service account JSON stored in env var (recommended for Railway)
         sa_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
         if not sa_json:
-            raise RuntimeError("Missing FIREBASE_SERVICE_ACCOUNT_JSON env var")
+            raise RuntimeError("Missing FIREBASE_SERVICE_ACCOUNT_JSON")
 
-        cred_dict = json.loads(sa_json)
-        cred = credentials.Certificate(cred_dict)
+        cred = credentials.Certificate(json.loads(sa_json))
         firebase_admin.initialize_app(cred)
 
     _db = firestore.client()
