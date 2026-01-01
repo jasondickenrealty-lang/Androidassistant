@@ -10,11 +10,23 @@ app = FastAPI()
 def health():
     return {"ok": True, "ts": datetime.datetime.utcnow().isoformat()}
 
+import json
+
 @app.post("/webhook")
 async def webhook(request: Request):
-    payload = await request.json()
-    # your existing logic here...
-    return {"ok": True, "ts": datetime.datetime.utcnow().isoformat()}
+    # Optional: verify a shared secret
+    expected = "MY_SHARED_SECRET"
+    got = request.headers.get("X-Webhook-Secret", "")
+    if got != expected:
+        return JSONResponse(content="unauthorized", status_code=401)
+
+    try:
+        data = await request.json()
+    except Exception:
+        data = {}
+
+    print("Webhook received:", json.dumps(data))
+    return JSONResponse(content="ok", status_code=200)
 
 @router.post("/omi/audio")
 async def omi_audio(

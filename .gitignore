@@ -79,3 +79,11 @@ obj/
 
 # Kotlin
 *.kotlin_module
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Temporary Gradle setup files
+gradle_temp/
+gradle-*.zip
