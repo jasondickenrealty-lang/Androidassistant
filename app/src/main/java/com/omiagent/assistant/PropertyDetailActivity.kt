@@ -1,4 +1,4 @@
-package com.example.androidassistant
+package com.omiagent.assistant
 
 import android.content.Intent
 import android.os.Bundle

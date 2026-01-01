@@ -1,6 +1,8 @@
-package com.example.androidassistant
+package com.omiagent.assistant
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,6 +15,11 @@ class SettingsActivity : AppCompatActivity() {
         
         findViewById<TextView>(R.id.btnBack).setOnClickListener {
             finish()
+        }
+        
+        findViewById<LinearLayout>(R.id.btnPairDevices).setOnClickListener {
+            val intent = Intent(this, PairDevicesActivity::class.java)
+            startActivity(intent)
         }
     }
 }

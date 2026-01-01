@@ -1,14 +1,15 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    namespace 'com.example.androidassistant'
+    namespace 'com.omiagent.assistant'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.androidassistant"
+        applicationId "com.omiagent.assistant"
         minSdk 24
         targetSdk 34
         versionCode 1
@@ -38,4 +39,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-auth'
+    
+    // Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 }

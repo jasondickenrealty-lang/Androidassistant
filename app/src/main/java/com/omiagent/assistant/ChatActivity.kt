@@ -1,4 +1,4 @@
-package com.example.androidassistant
+package com.omiagent.assistant
 
 import android.os.Bundle
 import android.widget.EditText
