@@ -15,9 +15,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
@@ -39,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
         
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
         
         // Check if user is already signed in
         if (auth.currentUser != null) {
@@ -88,10 +91,10 @@ class LoginActivity : AppCompatActivity() {
         if (isSignUpMode) {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
-                    setLoading(false)
                     if (task.isSuccessful) {
-                        navigateToHome()
+                        createUserProfile(auth.currentUser?.uid, email)
                     } else {
+                        setLoading(false)
                         Toast.makeText(this, "Sign up failed: ${task.exception?.message}", 
                             Toast.LENGTH_LONG).show()
                     }
@@ -135,13 +138,60 @@ class LoginActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
-                setLoading(false)
                 if (task.isSuccessful) {
-                    navigateToHome()
+                    val user = auth.currentUser
+                    // Check if user profile exists, if not create it
+                    user?.uid?.let { uid ->
+                        db.collection("users").document(uid).get()
+                            .addOnSuccessListener { document ->
+                                if (!document.exists()) {
+                                    createUserProfile(uid, user.email)
+                                } else {
+                                    setLoading(false)
+                                    navigateToHome()
+                                }
+                            }
+                            .addOnFailureListener {
+                                setLoading(false)
+                                navigateToHome()
+                            }
+                    }
                 } else {
+                    setLoading(false)
                     Toast.makeText(this, "Authentication failed: ${task.exception?.message}", 
                         Toast.LENGTH_SHORT).show()
                 }
+            }
+    }
+    
+    private fun createUserProfile(uid: String?, email: String?) {
+        if (uid == null) {
+            setLoading(false)
+            navigateToHome()
+            return
+        }
+        
+        // Default company for all new users
+        val companyId = "euphoric-development"
+        
+        val userProfile = hashMapOf(
+            "email" to (email ?: ""),
+            "companyId" to companyId,
+            "createdAt" to System.currentTimeMillis(),
+            "isActive" to true
+        )
+        
+        db.collection("users").document(uid)
+            .set(userProfile)
+            .addOnSuccessListener {
+                setLoading(false)
+                navigateToHome()
+            }
+            .addOnFailureListener { e ->
+                setLoading(false)
+                Toast.makeText(this, "Failed to create profile: ${e.message}", 
+                    Toast.LENGTH_SHORT).show()
+                navigateToHome()
             }
     }
     

@@ -1,5 +1,6 @@
 package com.omiagent.assistant
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.TextView
@@ -29,7 +30,7 @@ class PairDevicesActivity : AppCompatActivity() {
             finish()
         }
         
-        // Pair button
+        // Pair button - now opens Omi Glasses Connection Activity
         btnPairDevices.setOnClickListener {
             pairSelectedDevices()
         }
@@ -56,26 +57,20 @@ class PairDevicesActivity : AppCompatActivity() {
         
         if (checkboxSmartGlasses.isChecked) {
             devicesToPair.add("Smart Glasses")
+            // Launch Omi Glasses Connection Activity
+            val intent = Intent(this, OmiGlassesConnectionActivity::class.java)
+            startActivity(intent)
+            return
         }
         
         if (checkboxSmartAssistant.isChecked) {
             devicesToPair.add("Smart Assistant")
+            Toast.makeText(this, "Smart Assistant pairing - Coming soon", Toast.LENGTH_SHORT).show()
         }
         
         if (devicesToPair.isEmpty()) {
             Toast.makeText(this, "Please select at least one device", Toast.LENGTH_SHORT).show()
             return
         }
-        
-        // TODO: Implement actual pairing logic here
-        // For now, just show a success message
-        val message = "Pairing ${devicesToPair.joinToString(" and ")}..."
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        
-        // Simulate pairing success
-        btnPairDevices.postDelayed({
-            Toast.makeText(this, "Devices paired successfully!", Toast.LENGTH_SHORT).show()
-            finish()
-        }, 2000)
     }
 }

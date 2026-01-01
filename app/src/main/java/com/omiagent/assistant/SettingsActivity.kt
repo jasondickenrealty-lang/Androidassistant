@@ -21,5 +21,11 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(this, PairDevicesActivity::class.java)
             startActivity(intent)
         }
+        
+        // Add button to manage paired devices
+        findViewById<LinearLayout>(R.id.btnManageDevices)?.setOnClickListener {
+            val intent = Intent(this, PairedDevicesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

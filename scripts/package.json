@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "create-users": "node create-users.mjs"
+    "create-users": "node create-users.mjs",
+    "migrate": "node migrate-to-multitenant.js"
   },
   "dependencies": {
     "firebase-admin": "^12.7.0"

@@ -207,28 +207,31 @@ class MyDayActivity : AppCompatActivity() {
     private fun saveDayEntry() {
         val uid = auth.currentUser?.uid ?: return
         
-        val tasksMap = tasks.map { task ->
-            mapOf(
-                "id" to task.id,
-                "text" to task.text,
-                "completed" to task.completed,
-                "createdAt" to task.createdAt
-            )
-        }
-        
-        val data = hashMapOf(
-            "date" to currentDate,
-            "tasks" to tasksMap,
-            "notes" to notesEditText.text.toString(),
-            "updatedAt" to Date().toString()
-        )
-        
-        db.collection("users").document(uid)
-            .collection("my-days").document(currentDate)
-            .set(data, SetOptions.merge())
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error saving: ${e.message}", Toast.LENGTH_SHORT).show()
+        TenantManager.getCurrentUserCompanyId { companyId ->
+            val tasksMap = tasks.map { task ->
+                mapOf(
+                    "id" to task.id,
+                    "text" to task.text,
+                    "completed" to task.completed,
+                    "createdAt" to task.createdAt
+                )
             }
+            
+            val data = hashMapOf(
+                "date" to currentDate,
+                "tasks" to tasksMap,
+                "notes" to notesEditText.text.toString(),
+                "companyId" to companyId,
+                "updatedAt" to Date().toString()
+            )
+            
+            db.collection("users").document(uid)
+                .collection("my-days").document(currentDate)
+                .set(data, SetOptions.merge())
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error saving: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
     
     private fun saveNotes() {
