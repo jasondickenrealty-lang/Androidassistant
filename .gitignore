@@ -1,5 +1,23 @@
 # Ignore local Firebase credentials
 serviceAccount.json
+service-account-key.json
+backend/.env
+frontend/.env.development
+frontend/.env.production
+google-services.json
+
+# Node.js dependencies (including scripts folder)
+node_modules/
+**/node_modules/
+package-lock.json
+scripts/package-lock.json
+
+# Python virtual environments
+.venv/
+venv/
+env/
+*.egg-info/
+
 # Built application files
 *.apk
 *.ap_
