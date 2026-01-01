@@ -43,16 +43,28 @@ class HomeActivity : AppCompatActivity() {
         findViewById<CardView>(R.id.cardMyDay).setOnClickListener {
             startActivity(Intent(this, MyDayActivity::class.java))
         }
+        findViewById<Button>(R.id.btnViewMyDay).setOnClickListener {
+            startActivity(Intent(this, MyDayActivity::class.java))
+        }
         
         findViewById<CardView>(R.id.cardMyRecordings).setOnClickListener {
+            startActivity(Intent(this, MyRecordingsActivity::class.java))
+        }
+        findViewById<Button>(R.id.btnViewRecordings).setOnClickListener {
             startActivity(Intent(this, MyRecordingsActivity::class.java))
         }
         
         findViewById<CardView>(R.id.cardMyPeople).setOnClickListener {
             Toast.makeText(this, "My People - Coming Soon", Toast.LENGTH_SHORT).show()
         }
+        findViewById<Button>(R.id.btnViewPeople).setOnClickListener {
+            Toast.makeText(this, "My People - Coming Soon", Toast.LENGTH_SHORT).show()
+        }
         
         findViewById<CardView>(R.id.cardMyProperties).setOnClickListener {
+            startActivity(Intent(this, PropertyListActivity::class.java))
+        }
+        findViewById<Button>(R.id.btnViewProperties).setOnClickListener {
             startActivity(Intent(this, PropertyListActivity::class.java))
         }
         

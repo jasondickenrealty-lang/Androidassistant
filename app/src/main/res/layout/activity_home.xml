@@ -137,6 +137,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewMyDay"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:text="View My Day"
@@ -210,6 +211,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewRecordings"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:text="View Recordings"
@@ -283,6 +285,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewPeople"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:text="View People"
@@ -356,6 +359,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnViewProperties"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:text="View Properties"
