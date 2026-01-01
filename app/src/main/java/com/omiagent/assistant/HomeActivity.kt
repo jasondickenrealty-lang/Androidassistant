@@ -39,33 +39,37 @@ class HomeActivity : AppCompatActivity() {
             finish()
         }
         
-        // Dashboard Cards - Match web app
-        findViewById<CardView>(R.id.cardMyDay).setOnClickListener {
-            startActivity(Intent(this, MyDayActivity::class.java))
-        }
-        findViewById<Button>(R.id.btnViewMyDay).setOnClickListener {
+        // Dashboard Buttons
+        findViewById<LinearLayout>(R.id.btnMyDay).setOnClickListener {
             startActivity(Intent(this, MyDayActivity::class.java))
         }
         
-        findViewById<CardView>(R.id.cardMyRecordings).setOnClickListener {
-            startActivity(Intent(this, MyRecordingsActivity::class.java))
-        }
-        findViewById<Button>(R.id.btnViewRecordings).setOnClickListener {
+        findViewById<LinearLayout>(R.id.btnMyRecordings).setOnClickListener {
             startActivity(Intent(this, MyRecordingsActivity::class.java))
         }
         
-        findViewById<CardView>(R.id.cardMyPeople).setOnClickListener {
-            Toast.makeText(this, "My People - Coming Soon", Toast.LENGTH_SHORT).show()
-        }
-        findViewById<Button>(R.id.btnViewPeople).setOnClickListener {
+        findViewById<LinearLayout>(R.id.btnMyPeople).setOnClickListener {
             Toast.makeText(this, "My People - Coming Soon", Toast.LENGTH_SHORT).show()
         }
         
-        findViewById<CardView>(R.id.cardMyProperties).setOnClickListener {
+        findViewById<LinearLayout>(R.id.btnMyProperties).setOnClickListener {
             startActivity(Intent(this, PropertyListActivity::class.java))
         }
-        findViewById<Button>(R.id.btnViewProperties).setOnClickListener {
-            startActivity(Intent(this, PropertyListActivity::class.java))
+        
+        findViewById<LinearLayout>(R.id.btnOpenHouses).setOnClickListener {
+            startActivity(Intent(this, OpenHouseListActivity::class.java))
+        }
+        
+        findViewById<LinearLayout>(R.id.btnSafetyWord).setOnClickListener {
+            startActivity(Intent(this, SafetyWordActivity::class.java))
+        }
+        
+        findViewById<LinearLayout>(R.id.btnInspectionPunchList).setOnClickListener {
+            startActivity(Intent(this, InspectionPunchListActivity::class.java))
+        }
+        
+        findViewById<LinearLayout>(R.id.btnPropertyIQ).setOnClickListener {
+            startActivity(Intent(this, PropertyIQActivity::class.java))
         }
         
         // Bottom Navigation

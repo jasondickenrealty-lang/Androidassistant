@@ -26,6 +26,12 @@
         <activity android:name=".ProfileActivity" android:exported="false" />
         <activity android:name=".SettingsActivity" android:exported="false" />
         <activity android:name=".PairDevicesActivity" android:exported="false" />
+        <activity android:name=".OpenHouseListActivity" android:exported="false" />
+        <activity android:name=".NewOpenHouseActivity" android:exported="false" />
+        <activity android:name=".OpenHouseDetailActivity" android:exported="false" />
+        <activity android:name=".SafetyWordActivity" android:exported="false" />
+        <activity android:name=".InspectionPunchListActivity" android:exported="false" />
+        <activity android:name=".PropertyIQActivity" android:exported="false" />
     </application>
 
 </manifest>
